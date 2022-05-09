@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet Scheduler</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="../css/materialize.min.css">
+  <link rel="stylesheet" href="./options.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
+  <style>
+    header,
+    main,
+    footer {
+      padding-left: 300px;
+    }
+
+    @media only screen and (max-width : 992px) {
+
+      header,
+      main,
+      footer {
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+
+
+
+
+
+<body style="">
+  <!-- <header>
+      <nav class="show-on-small hide-on-large-only">
+        <div class="nav-wrapper teal">
+          <a href="#" class="brand-logo">Meetimely</a>
+          <a href="#!" data-target="slide-out" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+  <!-- <li><a target="_blank" href="https://github.com/Akshat-Oke/meet-scheduler" style="display: flex; align-items: center;"><span class="gh"></span>GitHub</a></li> -->
+  <!-- </ul>
+        </div>
+      </nav>
+    </header> -->
+  <ul id="slide-out" class="sidenav sidenav-fixed"
+    style="display: flex; flex-flow: column; transform: translateX(0px);">
+    <li>
+      <div class="user-view">
+        <div class="background">
+
+          <img src="/images/noice.jpg" style="transform: translateY(-10px); width:100%;">
+
+        </div>
+        <a href="#!"><span class="white-text name"></span></a>
+        <a href="#!"><span class="white-text email">
+            <div style="height:120px;"></div>
+            <!-- <p style="color: rgb(255, 236,1);"> .. </p>
+            <p style="color: rgb(255, 236,1);"> .. </p>
+            <p style="color: rgb(255, 236,1);">  ..</p>
+            <p style="color: rgb(255, 236,1);">  ..</p> -->
+          </span></a>
+      </div>
+    </li>
+    <!-- <li class="side_tab"></li> -->
+    <li class="side_tab tab-active" data-tab="schedule"><a href="/admin" class="waves-effect">
+        <i class="material-icons teal-text">home</i>
+        Home</a></li>
+    <li class="side_tab tab-active" data-tab="schedule"><a href="/admin/slots" class="waves-effect">
+        <i class="material-icons teal-text">access_time</i>
+        Slots</a></li>
+    
+    <li class="side_tab active" data-tab="settings"><a href="/admin/workers" class="waves-effect"><i
+          class="material-icons teal-text">people</i>Workers</a></li>
+    <div style="flex-grow: 1; display: flex;flex-direction: column; justify-content: flex-end;">
+      <!-- <li><a target="_blank" href="https://github.com/Akshat-Oke/meet-scheduler" style="display: flex; align-items: center;" class="waves-effect waves-green teal-text"><span class="gh"></span>GitHub</a></li> -->
+    </div>
+    <!-- <li>
+        <div class="divider"></div>
+      </li>
+      <li><a class="subheader">Subheader</a></li>
+      <li><a class="waves-effect" href="#!">Third Link With Waves</a></li> -->
+  </ul>
+  <main>
+
+    <section id="schedule" class="tab-content tab-active">
+      <h2 style="margin-top: 0px; margin-left: 15px;">Welcome, Admin to workers page!</h2>
+      <div class="loader-wrapper" id="schedule-loader" style="display: none;">
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-green">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div id="schedule-cards"> -->
+      <div id="worker-list">
+        <div class="container">
+          <div th:each="worker: ${workers}" class="card">
+            <h5>Name:<span th:text="${worker.getName()}"> Morgan Sweeney</span></h5>
+            <!-- <h5>Mobile Number: 696942042069</h5> -->
+            <!-- <h5>Worker Id: #3453</h5> -->
+            <h5>Services:</h5>
+            <ol style="list-style: circle;">
+              <li th:each="service: ${worker.getServices()}" style="font-weight: bold;">
+                [[${service}]]
+              </li>
+            </ol>
+            <br><br>
+            <div class="actions">
+              <button onclick="removeW(this);" class="actions__like"><span
+                  style="display: none;">[[${worker.getId()}]]</span>Remove Worker <i class="fas fa-heart"></i>
+              </button>
+              <button class="actions__trade">Edit Details <i class="fas fa-exchange-alt"></i></button>
+              <!-- <button class="actions__cancel">close &nbsp; <i class="fas fa-times"></i></button> -->
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+  </main>
+  <div class="fixed-action-btn direction-top active">
+    <a class="btn-floating btn-large modal-trigger" href="#create-subject-modal" id="add-subject-button">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>
+  <div id="create-subject-modal" class="modal modal-fixed-footer-custom"
+    style="max-width: 600px; max-height: 600px; border: 2px solid black; ">
+
+    <div class="modal-content">
+      <h4 style="margin-bottom: 5px; border-bottom: 2px solid black; padding: 5px;">Add a new Worker</h4>
+      <div class="form">
+        <div class="row">
+          <form class="col s12" style="margin-left: 0px; width: 100%;">
+            <div class="row" style="margin-top: 10px;">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">person_outline</i>
+                <input placeholder="Name" id="name" type="text" class="validate">
+                <label for="name">Name</label>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">place</i>
+                <input placeholder="Location" type="text" class="validate" id="locations" />
+                <label for="date">Locations (comma separated)</label>
+
+              </div>
+
+
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">filter_list</i>
+                <input placeholder="Service" type="text" class="validate" id="services" />
+                <label>Services (comma separated)</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">filter_list</i>
+                <input placeholder="Cost" type="text" class="validate" id="cost" />
+                <label>Service cost</label>
+              </div>
+            </div>
+        </div>
+        <div>
+
+          <button type="button" onclick="createW()" class="waves-effect waves-green btn-flat teal-text">CREATE</button>
+          <a href="#!" class="modal-close waves-effect waves-red red-text btn-flat" id="modal-cancel">Cancel</a>
+        </div>
+
+        <!-- <button id="delete_all" class="btn red white-text waves-effect">Delete all meetings</button> -->
+      </div>
+    </div>
+    </section>
+    </main>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems, {});
+      });
+    </script>
+    <script src="./worker.js"></script>
+    <script>
+      function removeW(ele) {
+        const id = ele.getElementsByTagName("span")[0].innerText;
+        fetch("/admin/workers/remove/" + id).then(function (res) {
+          window.location.reload();
+        }).catch(e => console.log(e));
+      }
+      function createW() {
+        const name = document.getElementById("name").value;
+        const services = document.getElementById("services").value;
+        const cost = document.getElementById("cost").value;
+        fetch(`/admin/workers/create?name=${name}&services=${services}&cost=${cost}`).then(function (response) {
+          return response.json();
+        }).then(function (data) {
+          console.log(data);
+          window.location.reload();
+        }).catch(function () {
+          console.log("Booo");
+        });
+      }
+    </script>
+    <script>
+      var worker = document.getElementById("new-worker");
+      var workerlist = document.getElementById("worker-list");
+      var ctr = 0;
+      // var button = document.getElementById("add-subject-button");
+
+      function func() {
+
+        workerlist.style.display = "none";
+        if (ctr == 0) {
+          worker.style.visibility = "visible";
+          ctr++;
+        }
+        else {
+          worker.style.visibility = "hidden";
+          workerlist.style.display = "block";
+          ctr = 0;
+        }
+      }
+
+      function hide() {
+
+        worker.style.visibility = "hidden";
+
+      }
+
+      var searchbar = document.getElementById("searchbar")
+      var stat_table = document.getElementById("status");
+
+      function tohide() {
+        // table.style.display="inline";
+        stat_table.style.visibility = "visible";
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".timepicker");
+        M.Timepicker.init(elems, {});
+        elems = document.querySelectorAll(".datepicker");
+        M.Datepicker.init(elems, { container: "body" });
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, { container: "body" });
+      });
+    </script>
+    <script>
+      var worker = document.getElementById("new-worker");
+      var workerlist = document.getElementById("worker-list");
+      var ctr = 0;
+      // var button = document.getElementById("add-subject-button");
+
+      function func() {
+
+        workerlist.style.display = "none";
+        if (ctr == 0) {
+          worker.style.visibility = "visible";
+          ctr++;
+        }
+        else {
+          worker.style.visibility = "hidden";
+          workerlist.style.display = "block";
+          ctr = 0;
+        }
+      }
+
+      function hide() {
+
+        worker.style.visibility = "hidden";
+
+      }
+
+      var searchbar = document.getElementById("searchbar")
+      var stat_table = document.getElementById("status");
+
+      function tohide() {
+        // table.style.display="inline";
+        stat_table.style.visibility = "visible";
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".timepicker");
+        M.Timepicker.init(elems, {});
+        elems = document.querySelectorAll(".datepicker");
+        M.Datepicker.init(elems, { container: "body" });
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, { container: "body" });
+      });
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,266 @@
+*{
+    margin:5px;
+    padding:5px;
+}
+.navbar{
+    display: flex;
+}
+h1{
+    font-size:50px;
+    text-align:center;
+    color:red;
+}
+h2{
+    font-size:40px;
+    text-align:center;
+    color:rgb(129, 74, 74);
+}
+.navlist{
+  display:flex;
+  width :75%;
+  background-color:rgb(189, 82, 82);
+  
+}
+
+.rightnavbar{
+ 
+    float:right;
+ background-color:rgb(189, 82, 82);
+ width:50%;
+ text-align:right;
+ border:white;
+ 
+}
+.navlist li{
+   display :flex;
+
+   list-style:none;
+   margin-block: 2px;
+   padding: 8px;
+   border:5px solid rgb(red, green, blue);
+}
+.navlist li a{
+    color:#444;
+    font-size:20px;
+   
+}
+.navlist li a:hover{
+    color:black;
+    text-decoration-thickness: 5px;
+    font-size:21px;
+}
+body{
+  
+    background-color:rgb(54, 52, 52);
+    opacity:1;
+    height:5000px;
+   
+}
+
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+    color:yellow;
+  }
+
+   #hello {
+   
+    padding: 6px;
+    border: 1px yellow;
+    margin-top: 4px;
+    margin-right: 16px;
+    font-size: 17px;
+  }
+  #home{
+      margin:15px;
+  }
+
+  .btn1{
+      font-size:17px;
+    background-color: white;
+    color: black;
+    border: 2px solid #008CBA;
+  }
+  .btn1:hover {
+    background-color:blueviolet;
+    color: white;
+    font-size:19px;
+  }
+  .btn1:visited{
+    background-color:blue;
+  }
+  .container{
+    display:flex;
+   
+    background-repeat: repeat-y;
+    background-size: 400px 400px;
+    background-image:url(car.jpg);
+    height:650px;
+    image-rendering:center;
+  }
+  .flexcontainer{
+      display:flex;
+      flex-wrap:wrap;
+  }
+  .wrapper{
+      width:100%;
+    margin :auto;
+    flex-wrap:wrap;
+  }
+
+  .boxone{
+     height:450px;
+    
+     background:grey;
+     flex-grow:1;
+     flex-shrink: 1;
+  }
+  .boxtwo{
+    height:450px;
+  
+    background:grey;
+    flex-grow:1;
+    flex-shrink: 1;
+  }
+  .boxthree{
+    height:450px;
+
+    background:grey;
+    flex-grow:1;
+    flex-shrink: 1;
+  }
+
+  #Home:hover{
+      font-size:30px;
+     
+  }
+  
+  .sky{
+    height: 90vh;
+    width:100%;
+    background-image: url(sky.jpg);
+    background-size:cover;
+    background-image: center;
+    background-position: absolute;
+    overflow-x: hidden;
+
+}
+.city{
+    height:250px;
+    width:200%;
+    background-image:url(city.png);
+    position:relative;
+    bottom:200px;
+    left:0;
+    right:0;
+    z-index: index 1;
+    display:block;
+   background-repeat:x;
+    animation :city 15s linear infinite;
+}
+
+@keyframes city{
+   100%{
+       transform:translateX(-1400px);
+   }
+}
+.highway{
+    height:200px;
+    width:500%;
+    display:block;
+    background-image: url(road.jpg);
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:1;
+    background-repeat:x;
+   animation:highway 5s linear infinite;
+}
+@keyframes highway{
+  100%{
+      transform:translateX(-1400px);
+  }
+}
+.car{
+   
+    bottom:100px;
+    position:absolute;
+    z-index:2;
+    width:400px;
+    left:30%;
+}
+
+.car img{
+    width:100%;
+} 
+
+@keyframes car{
+    100%{
+        transform:translateX(-1500px);
+    }
+}
+.wheel{
+    left:30%;
+    bottom:178px;
+    z-index:2;
+    position:absolute;
+}
+.wheel img{
+    height:72px;
+    width:72px;
+    animation: wheel 1s linear infinite;
+
+}
+.back{
+    position:absolute;
+    left:36px;
+  
+    
+}
+.front{
+    position:absolute;
+    left:280px;
+}
+
+@keyframes wheel{
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+
+.container {
+    margin-top: 30px;
+  }
+
+  .btn {
+    max-width: 100px;
+    margin: auto;
+    border-radius: 20px;
+
+  }
+  .btn {
+    transition-duration: 0.4s;
+  }
+  
+  .btn:hover {
+    background-color: red;
+    color:white;
+    max-width: 110px;
+  }
+
+   .search {
+    margin: 10px;
+    padding:10px;
+    background-color: black;
+    height:200px;
+    border-radius: 20px;
+  }
+
+  img{
+      object-fit: cover;
+      height: 100px;
+      width:550px;
+  }

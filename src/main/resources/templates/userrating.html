@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex-wrap;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background: rgb(187, 187, 206);
+}
+.rating-css {
+    /* margin-top:20px; */
+  height: 250px;
+  width: 400px;
+  background: #101012;
+  border: 4px solid #838383;
+  padding: 20px;
+  margin-left:450px;
+  margin-top:30px;
+}
+.rating-css div::before {
+  color:grey;
+  font-size: 30px;
+  font-family: sans-serif;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 20px 0;
+}
+.rating-css div {
+
+  color:yellow;
+  font-size: 30px;
+  font-family: sans-serif;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 20px 0;
+  
+}
+.rating-css input {
+  display: none;
+}
+.rating-css input + label {
+  font-size: 60px;
+  text-shadow: 1px 1px 0 #ffe400;
+  cursor: pointer;
+}
+.rating-css input:checked + label ~ label {
+  color: grey;
+}
+.rating-css label:active {
+  transform: scale(0.8);
+  transition: 0.3s ease;
+}
+/*This is my youtube channel link*/
+a {
+  position: absolute;
+  bottom: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: sans-serif;
+  right: 20px;
+  color: #000;
+}
+a:hover {
+  color: red;
+}
+h1{
+    top:10px;
+    text-align:center; 
+    color:teal;
+}
+#review{
+    margin-top: 400px;
+}
+.forminput{
+    margin-left:470px;
+    height:200px;
+    width:400px;
+}
+#hide{
+    display:none;
+}
+*:not(button){
+    margin: 0 !important;
+    padding: 0 !important;
+}
+h1{
+    margin-bottom: 20px;
+}
+.rating-css{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+button{
+    outline: none;
+    background-color: teal;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 15px;
+    border-radius: 5px;
+}
+button:hover{
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <form th:action="|/rating/${slotId}|">
+      <div style="display: flex; flex-direction: column; justify-content: space-around; align-items: center;">
+          <h1 style="text-align:center; color:teal">User Rating</h1>
+          <input type="form" id="hide">
+          <div class="rating-css">
+              <div></div>
+              <div class="star-icon">
+          <input type="radio" name="rating1" id="rating1">
+          <label for="rating1" class="fa fa-star"></label>
+          <input type="radio" name="rating1" id="rating2">
+          <label for="rating2" class="fa fa-star"></label>
+          <input type="radio" name="rating1" id="rating3">
+          <label for="rating3" class="fa fa-star"></label>
+          <input type="radio" name="rating1" id="rating4">
+          <label for="rating4" class="fa fa-star"></label>
+          <input type="radio" name="rating1" id="rating5">
+          <label for="rating5" class="fa fa-star"></label>
+              </div>
+              <input type="hidden" name="st" id="stars">
+           </div>
+           <br><br><br>
+            <!-- <label for="lname" class="forminput"><strong>Please enter your valuable suggestions: </strong></label><br> -->
+            <input type="text"  placeholder="Please enter your valuable suggestions:" class="forminput" name="fd"><br>
+            <button>Submit</button>
+      </div>
+
+</form>
+<script>
+    let stars = "5";
+    [...document.querySelectorAll("input[type=\"radio\"]")].forEach(ele => {
+        ele.addEventListener("click", e=>{
+            let inputEle = e.srcElement;
+            stars = inputEle.getAttribute("id").replace("rating", "");
+            console.log(e);
+            document.getElementById("stars").value = stars;
+        })
+    })
+</script>
+</body>
+
+</html>
+

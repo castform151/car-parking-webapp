@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet Scheduler</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="../css/materialize.min.css">
+  <link rel="stylesheet" href="./options.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    header,
+    main,
+    footer {
+      padding-left: 300px;
+    }
+
+    @media only screen and (max-width : 992px) {
+
+      header,
+      main,
+      footer {
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+
+
+
+
+
+<body style="">
+  <!-- <header>
+      <nav class="show-on-small hide-on-large-only">
+        <div class="nav-wrapper teal">
+          <a href="#" class="brand-logo">Meetimely</a>
+          <a href="#!" data-target="slide-out" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
+  <!-- <li><a target="_blank" href="https://github.com/Akshat-Oke/meet-scheduler" style="display: flex; align-items: center;"><span class="gh"></span>GitHub</a></li> -->
+  <!-- </ul>
+        </div>
+      </nav>
+    </header> -->
+  <ul id="slide-out" class="sidenav sidenav-fixed"
+    style="display: flex; flex-flow: column; transform: translateX(0px);">
+    <li>
+      <div class="user-view">
+        <div class="background">
+
+          <img src="/images/noice.jpg" style="transform: translateY(-10px); width:100%;">
+
+        </div>
+        <a href="#!"><span class="white-text name"></span></a>
+        <a href="#!"><span class="white-text email">
+            <div style="height:120px;"></div>
+            <!-- <p style="color: rgb(255, 236,1);"> .. </p>
+            <p style="color: rgb(255, 236,1);"> .. </p>
+            <p style="color: rgb(255, 236,1);">  ..</p>
+            <p style="color: rgb(255, 236,1);">  ..</p> -->
+          </span></a>
+      </div>
+    </li>
+    <!-- <li class="side_tab"></li> -->
+    <li class="side_tab tab-active" data-tab="schedule"><a href="admin.html" class="waves-effect">
+        <i class="material-icons teal-text">home</i>
+        Home</a></li>
+    <li class="side_tab tab-active" data-tab="schedule"><a href="slots.html" class="waves-effect">
+        <i class="material-icons teal-text">access_time</i>
+        Slots</a></li>
+    <li class="side_tab active" data-tab="about"><a href="spaces.html" class="waves-effect"><i
+          class="material-icons teal-text">grid_on</i>Spaces</a></li>
+    <li class="side_tab" data-tab="settings"><a href="#!" class="waves-effect"><i
+          class="material-icons teal-text">airport_shuttle</i>Cars</a></li>
+    <li class="side_tab" data-tab="settings"><a href="workers.html" class="waves-effect"><i
+          class="material-icons teal-text">people</i>Workers</a></li>
+    <div style="flex-grow: 1; display: flex;flex-direction: column; justify-content: flex-end;">
+      <!-- <li><a target="_blank" href="https://github.com/Akshat-Oke/meet-scheduler" style="display: flex; align-items: center;" class="waves-effect waves-green teal-text"><span class="gh"></span>GitHub</a></li> -->
+    </div>
+    <!-- <li>
+        <div class="divider"></div>
+      </li>
+      <li><a class="subheader">Subheader</a></li>
+      <li><a class="waves-effect" href="#!">Third Link With Waves</a></li> -->
+  </ul>
+  <main>
+
+    <section id="schedule" class="tab-content tab-active">
+      <h2 style="margin-top: 0px">Welcome, Admin to spaces page!</h2>
+      <div class="loader-wrapper" id="schedule-loader" style="display: none;">
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-green">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="schedule-cards">
+        <div class="topnav" id="searchbar">
+
+          <!-- <a class="active" href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a> -->
+          <!-- <input id="loc_search" type="text" placeholder="   Search Location..">
+            <button type="submit"><i class="fa fa-search"></i></button> -->
+          <form class="example" action="spaces.html">
+
+            <input type="text" id="stat_search" placeholder="Search here...." name="search">
+
+            <button onclick="tohide();" id="get_status">Search</button>
+          </form>
+        </div>
+      </div>
+      <div id="loc">
+        <p>Location: Pune</p>
+      </div>
+      <div id="status" class="stat_tab">
+        <table id="hello">
+          <tr>
+            <th>TIME</th>
+            <th>STATUS</th>
+            <th></th>
+          </tr>
+          <tr>
+            <td>06:00 am-07:00 am</td>
+            <td>Not Booked</td>
+
+          </tr>
+          <tr>
+            <td>07:00 am-08:00 am</td>
+            <td>Booked</td>
+
+          </tr>
+          <tr>
+            <td>08:00 am-09:00 am</td>
+            <td>Booked</td>
+
+          </tr>
+          <tr>
+            <td>09:00 am-10:00 am</td>
+            <td>Booked</td>
+
+          </tr>
+          <tr>
+            <td>10:00 am-11:00 am</td>
+            <td>Not Booked</td>
+
+          </tr>
+          <tr>
+            <td>11:00 am-12:00 am</td>
+            <td>Booked</td>
+
+          </tr>
+          <tr>
+            <td>12:00 pm-1:00 pm</td>
+            <td>Booked</td>
+
+          </tr>
+          <tr>
+            <td>01:00 pm-02:00 pm</td>
+            <td>Booked</td>
+
+          </tr>
+          <tr>
+            <td>02:00 pm-03:00 pm</td>
+            <td>Booked</td>
+
+          </tr>
+          <tr>
+            <td>03:00 pm-04:00 pm</td>
+            <td>Not Booked</td>
+
+          </tr>
+          <tr>
+            <td>04:00 pm-05:00 pm</td>
+            <td>Booked</td>
+
+          </tr>
+          <tr>
+            <td>05:00 pm-06:00 pm</td>
+            <td>Booked</td>
+
+          </tr>
+          <tr>
+            <td>06:00 pm-07:00 pm</td>
+            <td>Booked</td>
+
+          </tr>
+          <tr>
+            <td>07:00 pm-08:00 pm</td>
+            <td>Not Booked</td>
+
+          </tr>
+          <tr>
+            <td>08:00 pm-09:00 pm</td>
+            <td>Booked</td>
+
+          </tr>
+          <tr>
+            <td>09:00 pm-10:00 pm</td>
+            <td>Booked</td>
+
+          </tr>
+          <tr>
+            <td>10:00 pm-11:00 pm</td>
+            <td>Booked</td>
+
+          </tr>
+          <tr>
+            <td>11:00 pm-12:00 pm</td>
+            <td>Not Booked</td>
+
+          </tr>
+
+        </table>
+      </div>
+      <!-- <div class="timeline-item" id="timeline-item-fwgege"> 
+    <div class="timeline-icon disabled-false" data-subject-name="fwgege">
+      <i class="material-icons">check</i>
+    </div>
+    <div class="timeline-content">
+      <div class="card yellow disabled-false">
+        <div class="card-content">
+        <span class="new badge" data-badge-caption="">In 3 days</span>
+        <span class="new badge blue" data-badge-caption="min">20</span>
+          <span class="card-title">fwgege</span>
+          <div class="days-display">
+          <div class="day-chip-display">Mon 10:20</div>
+          
+          <div class="day-chip-display">Tue 10:20</div>
+          
+          <div class="day-chip-display">Wed 10:20</div>
+          </div>
+        </div>
+        <div class="card-action">
+          <a class="waves-effect waves-green meeting-code purple white-text" href="https://meet.google.com/poe-ykij-cnc" target="_blank"> poe-ykij-cnc</a>
+          <div>
+  
+          <button data-target="create-subject-modal" class="edit-button white-text waves-effect modal-trigger waves-teal" data-subject-name="fwgege"><i class="material-icons">edit</i></button>
+          <button class="delete-button red-text waves-effect waves-red" data-subject-name="fwgege"><i class="material-icons">delete</i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      </div> -->
+    </section>
+    <!-- <section id="about" class="tab-content" style="padding: 0 20px; padding-bottom: 30px;">
+        <h2 class="teal-text">What is Meetimely</h2>
+        <p>Meetimely (Meet + timely) allows you to set your lecture meeting links to open them automatically at specified
+          times.</p>
+        <blockquote>
+          No more fumbling around in your email/chats/notes to find that link. Just set it once and attend
+          lectures/meetings hassle-free!
+        </blockquote>
+        <div class="divider"></div>
+        <h3 class="teal-text">Google Meet</h3>
+        <p>Meetimely can open Google Meet links and also join the meet after muting yourself and switching off your camera
+          automatically</p>
+        <p>Send quick pre-set message (Ex. Attendance/ Submission) with one click!</p>
+        <blockquote>Press the "Quick Message" button that floats in the Google Meet tab</blockquote>
+        <h2 class="teal-text">Get Started</h2>
+        <p>Press the plus icon button to add a new meeting. Meeting names (subjects) must be <strong>unique</strong>.
+          Add the meeting link or the Google Meet code (xxx-yyyy-zzz) and choose your days and times</p>
+        <blockquote>All meetings are assumed to repeat weekly</blockquote>
+        <p>Choosing times: </p>
+        <h4>Repeat</h4>
+        <p>Select the days and set the time below. This will open the meeting on the same time for the selected days</p>
+        <p>Ex. Mon, Wed, Fri 3:00 PM</p>
+        <h4>Custom</h4>
+        <p>If your meeting/lectures are not at the same time for the scheduled days in a week, you can set the times for
+          each day individually. Leave blank if there's no meeting</p>
+        <div class="divider"></div>
+        <h2 class="teal-text">Editing</h2>
+        <p>In the timeline view, click the pencil icon <i class="material-icons">edit</i> to edit the meeting details.</p>
+        <p>To temporarily disable a scheduled meeting, click the tick-mark <i class="teal-text material-icons">check</i>
+          to the
+          left. Meetings disabled won't open unless you manually enable them</p>
+      </section>
+      <section id="settings" class="tab-content">
+        <h2 class="teal-text">Settings</h2>
+        <div class="container">
+          <div class="row"><button id="turn-off" class="btn waves-effect red white-text">Disable all meetings</button>
+          </div>
+          <div class="rest-settings">
+            <div class="row flex">
+              <span class="flow-text">
+                Automatically join Google Meet
+              </span>
+              <div class="switch">
+                <label>
+                  Off
+                  <input type="checkbox" id="auto_join_meet">
+                  <span class="lever"></span>
+                  On
+                </label>
+              </div>
+            </div>
+            <div class="helper-text" style="margin-bottom: 10px;">Your microphone and camera will be always turned off
+              even if this option is
+              disabled.</div>
+            <div class="row flex">
+              <div class="flow-text">
+                Automatically end meeting
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <div class="select-wrapper"><input class="select-dropdown dropdown-trigger" type="text" readonly="true" data-target="select-options-e1ed5921-da63-b696-6fd7-c742873d28ef"><ul id="select-options-e1ed5921-da63-b696-6fd7-c742873d28ef" class="dropdown-content select-dropdown" tabindex="0"><li id="select-options-e1ed5921-da63-b696-6fd7-c742873d28ef0" tabindex="0"><span>Don't end automatically</span></li><li id="select-options-e1ed5921-da63-b696-6fd7-c742873d28ef1" tabindex="0"><span>By closing the tab</span></li><li id="select-options-e1ed5921-da63-b696-6fd7-c742873d28ef2" tabindex="0"><span>By ending the call</span></li></ul><svg class="caret" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg><select id="auto_end_meet" tabindex="-1"> -->
+    <!-- <option value="" disabled selected>Choose your option</option> -->
+    <!-- <option value="off">Don't end automatically</option>
+                  <option value="tab">By closing the tab</option>
+                  <option value="call">By ending the call</option>
+                </select></div>
+                <label>End Method Method</label>
+                <span class="helper-text red-text">"By ending the call" option will be considered only for Google Meet. On
+                  all other sites, choosing either "closing the tab" or "ending the call" option will <strong>close the
+                    tab </strong>directly</span>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <h4>Quick Message</h4>
+            <div class="row flex">
+              <p class="flow-text">Show quick message button in Google Meet</p>
+              <div class="switch">
+                <label>
+                  No
+                  <input type="checkbox" id="show_quick_message">
+                  <span class="lever"></span>
+                  Show
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <p>The quick message button can be clicked only once to avoid spam.</p>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea id="quick_message" class="materialize-textarea" style="height: 45px;">John Doe, 2020CDOK321X</textarea>
+                <label for="quick_message" class="active">Your message to send on click</label>
+                <span class="helper-text">Your message is not sent anywhere else and is stored only on your machine</span>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <button id="delete_all" class="btn red white-text waves-effect">Delete all meetings</button>
+          </div>
+        </div>
+      </section> -->
+  </main>
+
+  <!-- FAB -->
+  <!-- <div class="fixed-action-btn direction-top active">
+      <a class="btn-floating btn-large modal-trigger" href="" id="add-subject-button">
+        <i class="large material-icons">add</i>
+      </a>
+    </div> -->
+
+
+
+  <!-- New Subject Modal-->
+  <!-- <div id="create-subject-modal" class="modal modal-fixed-footer-custom" tabindex="0" style="z-index: 1003; display: none; opacity: 0; top: 4%; transform: scaleX(0.8) scaleY(0.8);">
+      <div class="progress progress-hidden" id="create-progress" style="display: none;">
+        <div class="indeterminate"></div>
+      </div>
+      <div class="modal-content">
+        <h4>Create a new Subject</h4>
+        <div class="form">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="subject_name" type="text" class="validate valid">
+              <label for="subject_name" class="active">Subject(Meeting) Name</label>
+              <span class="helper-text" data-error="Subject already exists">Subject names must be unique</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="meet_url" type="text" class="validate valid" placeholder="abc-defg-hij or https://your_meeting.xyz/code" autocomplete="off">
+              <label for="meet_url" class="active">Meeting URL</label>
+              <span class="helper-text" data-error="Invalid format">Full URL or Google Meet code</span>
+            </div>
+          </div>
+          <h5>Meeting Duration <span style="font-size: 17px">(in minutes)</span></h5>
+          <p>Meeting will be automatically closed after this duration. Leave blank to not auto close</p>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="meet_duration" type="number" class="validate valid" min="1">
+              <label for="meet_duration" class="active">Meeting Duration in minutes</label>
+              <span class="helper-text" data-error="Must be greater than 5">To set the auto close method, go to <a href="" class="side_tab modal-close" data-tab="settings">settings</a></span>
+            </div>
+          </div>
+          <h5>Choose Days <span id="days-type">(Repeat)</span> </h5>
+          <div class="row row-tabs">
+            <div class="col s12">
+              <ul class="tabs">
+                <li class="tab col s6"><a class="active" href="#test1" id="repeat-mode">Repeat</a></li>
+                <li class="tab col s6"><a href="#test2" id="custom-mode">Custom</a></li>
+              <li class="indicator" style="left: 0px; right: 0px;"></li></ul>
+            </div>
+            <div id="test1" class="col s12 active">
+              <div class="days">
+                <div class="day-chip" data-selected="true">Mon</div>
+                <div class="day-chip" data-selected="true">Tue</div>
+                <div class="day-chip" data-selected="true">Wed</div>
+                <div class="day-chip">Thu</div>
+                <div class="day-chip">Fri</div>
+                <div class="day-chip">Sat</div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <div class="modal timepicker-modal" id="modal-96049c97-2ee3-6c2f-e2c7-957bb33b1e3f" tabindex="0" style="z-index: 1005; display: none; opacity: 0; top: 4%; transform: scaleX(0.8) scaleY(0.8);"><div class="modal-content timepicker-container"><div class="timepicker-digital-display"><div class="timepicker-text-container"><div class="timepicker-display-column"><span class="timepicker-span-hours text-primary">10</span>:<span class="timepicker-span-minutes">20</span></div><div class="timepicker-display-column timepicker-display-am-pm"><div class="timepicker-span-am-pm"><div class="am-btn text-primary">AM</div><div class="pm-btn">PM</div></div></div></div></div><div class="timepicker-analog-display"><div class="timepicker-plate"><div class="timepicker-canvas"><svg class="timepicker-svg" width="270" height="270"><g transform="translate(135,135)"><line x1="0" y1="0" x2="-73.61215932167732" y2="-42.49999999999994"></line><circle class="timepicker-canvas-bg" r="20" cx="-90.9326673973661" cy="-52.49999999999993"></circle><circle class="timepicker-canvas-bearing" cx="0" cy="0" r="4"></circle></g></svg></div><div class="timepicker-dial timepicker-hours" style="visibility: visible;"><div class="timepicker-tick" style="left: 167.5px; top: 24.0673px;">1</div><div class="timepicker-tick" style="left: 205.933px; top: 62.5px;">2</div><div class="timepicker-tick" style="left: 220px; top: 115px;">3</div><div class="timepicker-tick" style="left: 205.933px; top: 167.5px;">4</div><div class="timepicker-tick" style="left: 167.5px; top: 205.933px;">5</div><div class="timepicker-tick" style="left: 115px; top: 220px;">6</div><div class="timepicker-tick" style="left: 62.5px; top: 205.933px;">7</div><div class="timepicker-tick" style="left: 24.0673px; top: 167.5px;">8</div><div class="timepicker-tick" style="left: 10px; top: 115px;">9</div><div class="timepicker-tick" style="left: 24.0673px; top: 62.5px;">10</div><div class="timepicker-tick" style="left: 62.5px; top: 24.0673px;">11</div><div class="timepicker-tick" style="left: 115px; top: 10px;">12</div></div><div class="timepicker-dial timepicker-minutes timepicker-dial-out" style="visibility: hidden;"><div class="timepicker-tick" style="left: 115px; top: 10px;">00</div><div class="timepicker-tick" style="left: 167.5px; top: 24.0673px;">05</div><div class="timepicker-tick" style="left: 205.933px; top: 62.5px;">10</div><div class="timepicker-tick" style="left: 220px; top: 115px;">15</div><div class="timepicker-tick" style="left: 205.933px; top: 167.5px;">20</div><div class="timepicker-tick" style="left: 167.5px; top: 205.933px;">25</div><div class="timepicker-tick" style="left: 115px; top: 220px;">30</div><div class="timepicker-tick" style="left: 62.5px; top: 205.933px;">35</div><div class="timepicker-tick" style="left: 24.0673px; top: 167.5px;">40</div><div class="timepicker-tick" style="left: 10px; top: 115px;">45</div><div class="timepicker-tick" style="left: 24.0673px; top: 62.5px;">50</div><div class="timepicker-tick" style="left: 62.5px; top: 24.0673px;">55</div></div></div><div class="timepicker-footer"><button class="btn-flat timepicker-clear waves-effect" style="visibility: hidden;" type="button" tabindex="3">Clear</button><div class="confirmation-btns"><button class="btn-flat timepicker-close waves-effect" type="button" tabindex="3">Cancel</button><button class="btn-flat timepicker-close waves-effect" type="button" tabindex="3">Ok</button></div></div></div></div></div><input id="repeat-time" type="text" class="timepicker validate valid" pattern="\d{2}:\d{2} [AP]M">
+                  <label for="repeat-time" class="active">Choose Time</label>
+                </div>
+              </div>
+            </div>
+            <div id="test2" class="col s12" style="display: none;">
+              <div class="row">
+                <div class="input-field col s9 m6">
+                  <i class="prefix">Mon</i>
+                  <div class="modal timepicker-modal" id="modal-b8b0d164-108b-b710-ecbb-293710be6fe0" tabindex="0"><div class="modal-content timepicker-container"><div class="timepicker-digital-display"><div class="timepicker-text-container"><div class="timepicker-display-column"><span class="timepicker-span-hours text-primary"></span>:<span class="timepicker-span-minutes"></span></div><div class="timepicker-display-column timepicker-display-am-pm"><div class="timepicker-span-am-pm"><div class="am-btn">AM</div><div class="pm-btn">PM</div></div></div></div></div><div class="timepicker-analog-display"><div class="timepicker-plate"><div class="timepicker-canvas"><svg class="timepicker-svg" width="270" height="270"><g transform="translate(135,135)"><line x1="0" y1="0"></line><circle class="timepicker-canvas-bg" r="20"></circle><circle class="timepicker-canvas-bearing" cx="0" cy="0" r="4"></circle></g></svg></div><div class="timepicker-dial timepicker-hours"><div class="timepicker-tick" style="left: 167.5px; top: 24.0673px;">1</div><div class="timepicker-tick" style="left: 205.933px; top: 62.5px;">2</div><div class="timepicker-tick" style="left: 220px; top: 115px;">3</div><div class="timepicker-tick" style="left: 205.933px; top: 167.5px;">4</div><div class="timepicker-tick" style="left: 167.5px; top: 205.933px;">5</div><div class="timepicker-tick" style="left: 115px; top: 220px;">6</div><div class="timepicker-tick" style="left: 62.5px; top: 205.933px;">7</div><div class="timepicker-tick" style="left: 24.0673px; top: 167.5px;">8</div><div class="timepicker-tick" style="left: 10px; top: 115px;">9</div><div class="timepicker-tick" style="left: 24.0673px; top: 62.5px;">10</div><div class="timepicker-tick" style="left: 62.5px; top: 24.0673px;">11</div><div class="timepicker-tick" style="left: 115px; top: 10px;">12</div></div><div class="timepicker-dial timepicker-minutes timepicker-dial-out"><div class="timepicker-tick" style="left: 115px; top: 10px;">00</div><div class="timepicker-tick" style="left: 167.5px; top: 24.0673px;">05</div><div class="timepicker-tick" style="left: 205.933px; top: 62.5px;">10</div><div class="timepicker-tick" style="left: 220px; top: 115px;">15</div><div class="timepicker-tick" style="left: 205.933px; top: 167.5px;">20</div><div class="timepicker-tick" style="left: 167.5px; top: 205.933px;">25</div><div class="timepicker-tick" style="left: 115px; top: 220px;">30</div><div class="timepicker-tick" style="left: 62.5px; top: 205.933px;">35</div><div class="timepicker-tick" style="left: 24.0673px; top: 167.5px;">40</div><div class="timepicker-tick" style="left: 10px; top: 115px;">45</div><div class="timepicker-tick" style="left: 24.0673px; top: 62.5px;">50</div><div class="timepicker-tick" style="left: 62.5px; top: 24.0673px;">55</div></div></div><div class="timepicker-footer"><button class="btn-flat timepicker-clear waves-effect" style="visibility: hidden;" type="button" tabindex="3">Clear</button><div class="confirmation-btns"><button class="btn-flat timepicker-close waves-effect" type="button" tabindex="3">Cancel</button><button class="btn-flat timepicker-close waves-effect" type="button" tabindex="3">Ok</button></div></div></div></div></div><input id="custom1" type="text" class="timepicker validate custom-times" pattern="\d{2}:\d{2} [AP]M" data-selected="false">
+                  <label for="custom1">Choose Time</label>
+                </div>
+                <div class="input-field col s9 m6">
+                  <i class=" prefix">Tue</i>
+                  <div class="modal timepicker-modal" id="modal-79efe6d9-bbca-3486-8235-e257d61d964a" tabindex="0"><div class="modal-content timepicker-container"><div class="timepicker-digital-display"><div class="timepicker-text-container"><div class="timepicker-display-column"><span class="timepicker-span-hours text-primary"></span>:<span class="timepicker-span-minutes"></span></div><div class="timepicker-display-column timepicker-display-am-pm"><div class="timepicker-span-am-pm"><div class="am-btn">AM</div><div class="pm-btn">PM</div></div></div></div></div><div class="timepicker-analog-display"><div class="timepicker-plate"><div class="timepicker-canvas"><svg class="timepicker-svg" width="270" height="270"><g transform="translate(135,135)"><line x1="0" y1="0"></line><circle class="timepicker-canvas-bg" r="20"></circle><circle class="timepicker-canvas-bearing" cx="0" cy="0" r="4"></circle></g></svg></div><div class="timepicker-dial timepicker-hours"><div class="timepicker-tick" style="left: 167.5px; top: 24.0673px;">1</div><div class="timepicker-tick" style="left: 205.933px; top: 62.5px;">2</div><div class="timepicker-tick" style="left: 220px; top: 115px;">3</div><div class="timepicker-tick" style="left: 205.933px; top: 167.5px;">4</div><div class="timepicker-tick" style="left: 167.5px; top: 205.933px;">5</div><div class="timepicker-tick" style="left: 115px; top: 220px;">6</div><div class="timepicker-tick" style="left: 62.5px; top: 205.933px;">7</div><div class="timepicker-tick" style="left: 24.0673px; top: 167.5px;">8</div><div class="timepicker-tick" style="left: 10px; top: 115px;">9</div><div class="timepicker-tick" style="left: 24.0673px; top: 62.5px;">10</div><div class="timepicker-tick" style="left: 62.5px; top: 24.0673px;">11</div><div class="timepicker-tick" style="left: 115px; top: 10px;">12</div></div><div class="timepicker-dial timepicker-minutes timepicker-dial-out"><div class="timepicker-tick" style="left: 115px; top: 10px;">00</div><div class="timepicker-tick" style="left: 167.5px; top: 24.0673px;">05</div><div class="timepicker-tick" style="left: 205.933px; top: 62.5px;">10</div><div class="timepicker-tick" style="left: 220px; top: 115px;">15</div><div class="timepicker-tick" style="left: 205.933px; top: 167.5px;">20</div><div class="timepicker-tick" style="left: 167.5px; top: 205.933px;">25</div><div class="timepicker-tick" style="left: 115px; top: 220px;">30</div><div class="timepicker-tick" style="left: 62.5px; top: 205.933px;">35</div><div class="timepicker-tick" style="left: 24.0673px; top: 167.5px;">40</div><div class="timepicker-tick" style="left: 10px; top: 115px;">45</div><div class="timepicker-tick" style="left: 24.0673px; top: 62.5px;">50</div><div class="timepicker-tick" style="left: 62.5px; top: 24.0673px;">55</div></div></div><div class="timepicker-footer"><button class="btn-flat timepicker-clear waves-effect" style="visibility: hidden;" type="button" tabindex="3">Clear</button><div class="confirmation-btns"><button class="btn-flat timepicker-close waves-effect" type="button" tabindex="3">Cancel</button><button class="btn-flat timepicker-close waves-effect" type="button" tabindex="3">Ok</button></div></div></div></div></div><input id="custom2" type="text" class="timepicker validate custom-times" pattern="\d{2}:\d{2} [AP]M" data-selected="false">
+                  <label for="custom2">Choose Time</label>
+                </div>
+                <div class="input-field col s9 m6">
+                  <i class=" prefix">Wed</i>
+                  <div class="modal timepicker-modal" id="modal-3b895feb-7b47-4aa0-32fa-946c3ef23e3a" tabindex="0"><div class="modal-content timepicker-container"><div class="timepicker-digital-display"><div class="timepicker-text-container"><div class="timepicker-display-column"><span class="timepicker-span-hours text-primary"></span>:<span class="timepicker-span-minutes"></span></div><div class="timepicker-display-column timepicker-display-am-pm"><div class="timepicker-span-am-pm"><div class="am-btn">AM</div><div class="pm-btn">PM</div></div></div></div></div><div class="timepicker-analog-display"><div class="timepicker-plate"><div class="timepicker-canvas"><svg class="timepicker-svg" width="270" height="270"><g transform="translate(135,135)"><line x1="0" y1="0"></line><circle class="timepicker-canvas-bg" r="20"></circle><circle class="timepicker-canvas-bearing" cx="0" cy="0" r="4"></circle></g></svg></div><div class="timepicker-dial timepicker-hours"><div class="timepicker-tick" style="left: 167.5px; top: 24.0673px;">1</div><div class="timepicker-tick" style="left: 205.933px; top: 62.5px;">2</div><div class="timepicker-tick" style="left: 220px; top: 115px;">3</div><div class="timepicker-tick" style="left: 205.933px; top: 167.5px;">4</div><div class="timepicker-tick" style="left: 167.5px; top: 205.933px;">5</div><div class="timepicker-tick" style="left: 115px; top: 220px;">6</div><div class="timepicker-tick" style="left: 62.5px; top: 205.933px;">7</div><div class="timepicker-tick" style="left: 24.0673px; top: 167.5px;">8</div><div class="timepicker-tick" style="left: 10px; top: 115px;">9</div><div class="timepicker-tick" style="left: 24.0673px; top: 62.5px;">10</div><div class="timepicker-tick" style="left: 62.5px; top: 24.0673px;">11</div><div class="timepicker-tick" style="left: 115px; top: 10px;">12</div></div><div class="timepicker-dial timepicker-minutes timepicker-dial-out"><div class="timepicker-tick" style="left: 115px; top: 10px;">00</div><div class="timepicker-tick" style="left: 167.5px; top: 24.0673px;">05</div><div class="timepicker-tick" style="left: 205.933px; top: 62.5px;">10</div><div class="timepicker-tick" style="left: 220px; top: 115px;">15</div><div class="timepicker-tick" style="left: 205.933px; top: 167.5px;">20</div><div class="timepicker-tick" style="left: 167.5px; top: 205.933px;">25</div><div class="timepicker-tick" style="left: 115px; top: 220px;">30</div><div class="timepicker-tick" style="left: 62.5px; top: 205.933px;">35</div><div class="timepicker-tick" style="left: 24.0673px; top: 167.5px;">40</div><div class="timepicker-tick" style="left: 10px; top: 115px;">45</div><div class="timepicker-tick" style="left: 24.0673px; top: 62.5px;">50</div><div class="timepicker-tick" style="left: 62.5px; top: 24.0673px;">55</div></div></div><div class="timepicker-footer"><button class="btn-flat timepicker-clear waves-effect" style="visibility: hidden;" type="button" tabindex="3">Clear</button><div class="confirmation-btns"><button class="btn-flat timepicker-close waves-effect" type="button" tabindex="3">Cancel</button><button class="btn-flat timepicker-close waves-effect" type="button" tabindex="3">Ok</button></div></div></div></div></div><input id="custom2" type="text" class="timepicker validate custom-times" pattern="\d{2}:\d{2} [AP]M" data-selected="false">
+                  <label for="custom2">Choose Time</label>
+                </div>
+                <div class="input-field col s9 m6">
+                  <i class=" prefix">Thu</i>
+                  <div class="modal timepicker-modal" id="modal-a323e1ad-552d-b6c5-44e9-6d2dd32007a6" tabindex="0"><div class="modal-content timepicker-container"><div class="timepicker-digital-display"><div class="timepicker-text-container"><div class="timepicker-display-column"><span class="timepicker-span-hours text-primary"></span>:<span class="timepicker-span-minutes"></span></div><div class="timepicker-display-column timepicker-display-am-pm"><div class="timepicker-span-am-pm"><div class="am-btn">AM</div><div class="pm-btn">PM</div></div></div></div></div><div class="timepicker-analog-display"><div class="timepicker-plate"><div class="timepicker-canvas"><svg class="timepicker-svg" width="270" height="270"><g transform="translate(135,135)"><line x1="0" y1="0"></line><circle class="timepicker-canvas-bg" r="20"></circle><circle class="timepicker-canvas-bearing" cx="0" cy="0" r="4"></circle></g></svg></div><div class="timepicker-dial timepicker-hours"><div class="timepicker-tick" style="left: 167.5px; top: 24.0673px;">1</div><div class="timepicker-tick" style="left: 205.933px; top: 62.5px;">2</div><div class="timepicker-tick" style="left: 220px; top: 115px;">3</div><div class="timepicker-tick" style="left: 205.933px; top: 167.5px;">4</div><div class="timepicker-tick" style="left: 167.5px; top: 205.933px;">5</div><div class="timepicker-tick" style="left: 115px; top: 220px;">6</div><div class="timepicker-tick" style="left: 62.5px; top: 205.933px;">7</div><div class="timepicker-tick" style="left: 24.0673px; top: 167.5px;">8</div><div class="timepicker-tick" style="left: 10px; top: 115px;">9</div><div class="timepicker-tick" style="left: 24.0673px; top: 62.5px;">10</div><div class="timepicker-tick" style="left: 62.5px; top: 24.0673px;">11</div><div class="timepicker-tick" style="left: 115px; top: 10px;">12</div></div><div class="timepicker-dial timepicker-minutes timepicker-dial-out"><div class="timepicker-tick" style="left: 115px; top: 10px;">00</div><div class="timepicker-tick" style="left: 167.5px; top: 24.0673px;">05</div><div class="timepicker-tick" style="left: 205.933px; top: 62.5px;">10</div><div class="timepicker-tick" style="left: 220px; top: 115px;">15</div><div class="timepicker-tick" style="left: 205.933px; top: 167.5px;">20</div><div class="timepicker-tick" style="left: 167.5px; top: 205.933px;">25</div><div class="timepicker-tick" style="left: 115px; top: 220px;">30</div><div class="timepicker-tick" style="left: 62.5px; top: 205.933px;">35</div><div class="timepicker-tick" style="left: 24.0673px; top: 167.5px;">40</div><div class="timepicker-tick" style="left: 10px; top: 115px;">45</div><div class="timepicker-tick" style="left: 24.0673px; top: 62.5px;">50</div><div class="timepicker-tick" style="left: 62.5px; top: 24.0673px;">55</div></div></div><div class="timepicker-footer"><button class="btn-flat timepicker-clear waves-effect" style="visibility: hidden;" type="button" tabindex="3">Clear</button><div class="confirmation-btns"><button class="btn-flat timepicker-close waves-effect" type="button" tabindex="3">Cancel</button><button class="btn-flat timepicker-close waves-effect" type="button" tabindex="3">Ok</button></div></div></div></div></div><input id="custom2" type="text" class="timepicker validate custom-times" pattern="\d{2}:\d{2} [AP]M" data-selected="false">
+                  <label for="custom2">Choose Time</label>
+                </div>
+                <div class="input-field col s9 m6">
+                  <i class=" prefix">Fri</i>
+                  <div class="modal timepicker-modal" id="modal-92c2c999-b5e7-36ac-a4ae-87523d0e63eb" tabindex="0"><div class="modal-content timepicker-container"><div class="timepicker-digital-display"><div class="timepicker-text-container"><div class="timepicker-display-column"><span class="timepicker-span-hours text-primary"></span>:<span class="timepicker-span-minutes"></span></div><div class="timepicker-display-column timepicker-display-am-pm"><div class="timepicker-span-am-pm"><div class="am-btn">AM</div><div class="pm-btn">PM</div></div></div></div></div><div class="timepicker-analog-display"><div class="timepicker-plate"><div class="timepicker-canvas"><svg class="timepicker-svg" width="270" height="270"><g transform="translate(135,135)"><line x1="0" y1="0"></line><circle class="timepicker-canvas-bg" r="20"></circle><circle class="timepicker-canvas-bearing" cx="0" cy="0" r="4"></circle></g></svg></div><div class="timepicker-dial timepicker-hours"><div class="timepicker-tick" style="left: 167.5px; top: 24.0673px;">1</div><div class="timepicker-tick" style="left: 205.933px; top: 62.5px;">2</div><div class="timepicker-tick" style="left: 220px; top: 115px;">3</div><div class="timepicker-tick" style="left: 205.933px; top: 167.5px;">4</div><div class="timepicker-tick" style="left: 167.5px; top: 205.933px;">5</div><div class="timepicker-tick" style="left: 115px; top: 220px;">6</div><div class="timepicker-tick" style="left: 62.5px; top: 205.933px;">7</div><div class="timepicker-tick" style="left: 24.0673px; top: 167.5px;">8</div><div class="timepicker-tick" style="left: 10px; top: 115px;">9</div><div class="timepicker-tick" style="left: 24.0673px; top: 62.5px;">10</div><div class="timepicker-tick" style="left: 62.5px; top: 24.0673px;">11</div><div class="timepicker-tick" style="left: 115px; top: 10px;">12</div></div><div class="timepicker-dial timepicker-minutes timepicker-dial-out"><div class="timepicker-tick" style="left: 115px; top: 10px;">00</div><div class="timepicker-tick" style="left: 167.5px; top: 24.0673px;">05</div><div class="timepicker-tick" style="left: 205.933px; top: 62.5px;">10</div><div class="timepicker-tick" style="left: 220px; top: 115px;">15</div><div class="timepicker-tick" style="left: 205.933px; top: 167.5px;">20</div><div class="timepicker-tick" style="left: 167.5px; top: 205.933px;">25</div><div class="timepicker-tick" style="left: 115px; top: 220px;">30</div><div class="timepicker-tick" style="left: 62.5px; top: 205.933px;">35</div><div class="timepicker-tick" style="left: 24.0673px; top: 167.5px;">40</div><div class="timepicker-tick" style="left: 10px; top: 115px;">45</div><div class="timepicker-tick" style="left: 24.0673px; top: 62.5px;">50</div><div class="timepicker-tick" style="left: 62.5px; top: 24.0673px;">55</div></div></div><div class="timepicker-footer"><button class="btn-flat timepicker-clear waves-effect" style="visibility: hidden;" type="button" tabindex="3">Clear</button><div class="confirmation-btns"><button class="btn-flat timepicker-close waves-effect" type="button" tabindex="3">Cancel</button><button class="btn-flat timepicker-close waves-effect" type="button" tabindex="3">Ok</button></div></div></div></div></div><input id="custom2" type="text" class="timepicker validate custom-times" pattern="\d{2}:\d{2} [AP]M" data-selected="false">
+                  <label for="custom2">Choose Time</label>
+                </div>
+                <div class="input-field col s9 m6">
+                  <i class=" prefix">Sat</i>
+                  <div class="modal timepicker-modal" id="modal-4a8eaa80-911b-1651-381c-51e66bf303b6" tabindex="0"><div class="modal-content timepicker-container"><div class="timepicker-digital-display"><div class="timepicker-text-container"><div class="timepicker-display-column"><span class="timepicker-span-hours text-primary"></span>:<span class="timepicker-span-minutes"></span></div><div class="timepicker-display-column timepicker-display-am-pm"><div class="timepicker-span-am-pm"><div class="am-btn">AM</div><div class="pm-btn">PM</div></div></div></div></div><div class="timepicker-analog-display"><div class="timepicker-plate"><div class="timepicker-canvas"><svg class="timepicker-svg" width="270" height="270"><g transform="translate(135,135)"><line x1="0" y1="0"></line><circle class="timepicker-canvas-bg" r="20"></circle><circle class="timepicker-canvas-bearing" cx="0" cy="0" r="4"></circle></g></svg></div><div class="timepicker-dial timepicker-hours"><div class="timepicker-tick" style="left: 167.5px; top: 24.0673px;">1</div><div class="timepicker-tick" style="left: 205.933px; top: 62.5px;">2</div><div class="timepicker-tick" style="left: 220px; top: 115px;">3</div><div class="timepicker-tick" style="left: 205.933px; top: 167.5px;">4</div><div class="timepicker-tick" style="left: 167.5px; top: 205.933px;">5</div><div class="timepicker-tick" style="left: 115px; top: 220px;">6</div><div class="timepicker-tick" style="left: 62.5px; top: 205.933px;">7</div><div class="timepicker-tick" style="left: 24.0673px; top: 167.5px;">8</div><div class="timepicker-tick" style="left: 10px; top: 115px;">9</div><div class="timepicker-tick" style="left: 24.0673px; top: 62.5px;">10</div><div class="timepicker-tick" style="left: 62.5px; top: 24.0673px;">11</div><div class="timepicker-tick" style="left: 115px; top: 10px;">12</div></div><div class="timepicker-dial timepicker-minutes timepicker-dial-out"><div class="timepicker-tick" style="left: 115px; top: 10px;">00</div><div class="timepicker-tick" style="left: 167.5px; top: 24.0673px;">05</div><div class="timepicker-tick" style="left: 205.933px; top: 62.5px;">10</div><div class="timepicker-tick" style="left: 220px; top: 115px;">15</div><div class="timepicker-tick" style="left: 205.933px; top: 167.5px;">20</div><div class="timepicker-tick" style="left: 167.5px; top: 205.933px;">25</div><div class="timepicker-tick" style="left: 115px; top: 220px;">30</div><div class="timepicker-tick" style="left: 62.5px; top: 205.933px;">35</div><div class="timepicker-tick" style="left: 24.0673px; top: 167.5px;">40</div><div class="timepicker-tick" style="left: 10px; top: 115px;">45</div><div class="timepicker-tick" style="left: 24.0673px; top: 62.5px;">50</div><div class="timepicker-tick" style="left: 62.5px; top: 24.0673px;">55</div></div></div><div class="timepicker-footer"><button class="btn-flat timepicker-clear waves-effect" style="visibility: hidden;" type="button" tabindex="3">Clear</button><div class="confirmation-btns"><button class="btn-flat timepicker-close waves-effect" type="button" tabindex="3">Cancel</button><button class="btn-flat timepicker-close waves-effect" type="button" tabindex="3">Ok</button></div></div></div></div></div><input id="custom2" type="text" class="timepicker validate custom-times" pattern="\d{2}:\d{2} [AP]M" data-selected="false">
+                  <label for="custom2">Choose Time</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+  
+        <button href="#!" id="create_subject_button" class="waves-effect waves-green btn-flat teal-text">CREATE</button>
+        <a href="#!" class="modal-close waves-effect waves-red red-text btn-flat" id="modal-cancel">Cancel</a>
+      </div>
+    </div> -->
+
+
+  <!-- Compiled and minified JavaScript -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+  <script src="../materialize.min.js"></script>
+  <script src="./subject_actions.js"></script>
+  <script src="./create_alarm.js"></script>
+  <script src="./options.js"></script>
+  <script src="./list.js"></script>
+  <script src="./settings.js"></script>
+
+
+  <div class="hiddendiv common"
+    style="font-size: 16px; font-family: -apple-system, BlinkMacSystemFont, ;Segoe Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif; line-height: normal; padding: 12px 0px; width :683px;">
+    John Doe, 2020CDOK321X<br></div>
+  <div class="sidenav-overlay" style="display: none;"></div>
+  <div class="drag-target">
+
+  </div>
+</body>
+
+</html>

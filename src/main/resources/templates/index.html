@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+<link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <!-- <link rel="stylesheet" href="movingcar.css"> -->
+    <script>
+        $(window).ready(function(){
+$(".boton").wrapInner('<div class=botontext></div>');
+    
+    $(".botontext").clone().appendTo( $(".boton") );
+    
+    $(".boton").append('<span class="twist"></span><span class="twist"></span><span class="twist"></span><span class="twist"></span>');
+    
+    $(".twist").css("width", "25%").css("width", "+=3px");
+});
+
+    </script>
+
+    <style>
+  #text{
+      color:red;
+      text-align:center;
+      font-family: 'Abril Fatface', cursive;
+  }
+  html, body {
+        background: #1f1d21;
+    }
+    
+  .boton {
+      bottom :190px;
+        width: 200px;
+        height: 50px;
+        margin: 200px auto;
+        display: block;
+        position: relative;
+    }
+    
+    .botontext {
+     
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+        text-align: center;
+        line-height: 50px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+    
+    .twist {
+        display: block;
+        height: 100%;
+        width: 25%;
+        position: relative;
+        float: left;
+        margin-left: -4px;
+    }
+    
+    .twist:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: #23d893;
+        bottom: 100%;
+        position: absolute;
+        transform-origin: center bottom 0px; 
+        transform: matrix3d(1, 0, 0, 0, 
+                            0, 0, -1, -0.003, 
+                            0, 1, 0, 0, 
+                            0, 0, 0, 1);
+        
+-webkit-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+   -moz-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+     -o-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+        transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); /* custom */
+    }
+    
+    .twist:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        top: 100%;
+        height: 100%;
+        background: #05725a;
+        transform-origin: center top 0px;
+        transform: matrix3d(1, 0, 0, 0, 
+                            0, 1, 0, 0, 
+                            0, 0, 1, -0.003, 
+                            0, -50, 0, 1);
+        
+-webkit-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+   -moz-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+     -o-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+        transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); /* custom */
+    }
+    
+    .boton:hover .twist:before {
+        background: #fff;
+        transform: matrix3d(1, 0, 0, 0, 
+                            0, 1, 0, 0, 
+                            0, 0, 1, 0.003, 
+                            0, 50, 0, 1);
+    }
+    
+    .boton:hover .twist:after {
+        background: #dedae1;
+        transform: matrix3d(1, 0, 0, 0, 
+                            0, 0, -1, 0.003, 
+                            0, 1, 0, 0, 
+                            0, 0, 0, 1);
+    }
+
+    .boton .twist:nth-of-type(1) {
+        margin-left: 0;
+    }
+    
+    .boton .twist:nth-of-type(1):before,
+    .boton .twist:nth-of-type(1):after {
+        transition-delay: 0s;
+    }
+    
+    .boton .twist:nth-of-type(2):before,
+    .boton .twist:nth-of-type(2):after {
+        transition-delay: 0.1s;
+    }
+    
+    .boton .twist:nth-of-type(3):before,
+    .boton .twist:nth-of-type(3):after {
+        transition-delay: 0.2s;
+    }
+    
+    .boton .twist:nth-of-type(4):before,
+    .boton .twist:nth-of-type(4):after {
+        transition-delay: 0.3s;
+    }
+    
+    .boton .botontext:nth-of-type(1) {
+        color: #3d3b40;
+        bottom: 100%;
+        transform-origin: center bottom 0px; 
+        transform: matrix3d(1, 0, 0, 0, 
+                            0, 0, -1, -0.003, 
+                            0, 1, 0, 0, 
+                            0, 0, 0, 1);
+        
+-webkit-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+   -moz-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+     -o-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+        transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); /* custom */
+    }
+    
+    .boton:hover .botontext:nth-of-type(1) {
+        transform: matrix3d(1, 0, 0, 0, 
+                            0, 1, 0, 0, 
+                            0, 0, 1, 0.003, 
+                            0, 50, 0, 1);
+    }
+    
+    .boton .botontext:nth-of-type(2) {
+        color: #fff;
+        top: 100%;
+        transform-origin: center top 0px;
+        transform: matrix3d(1, 0, 0, 0, 
+                            0, 1, 0, 0, 
+                            0, 0, 1, -0.003, 
+                            0, -50, 0, 1);
+        
+-webkit-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+   -moz-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+     -o-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+        transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); /* custom */
+    }
+    
+    .boton:hover .botontext:nth-of-type(2) {
+        transform: matrix3d(1, 0, 0, 0, 
+                            0, 0, -1, 0.003, 
+                            0, 1, 0, 0, 
+                            0, 0, 0, 1);
+    }
+
+   
+ 
+.sky{
+    z-index:20;
+    height: 90vh;
+    width:100%;
+    background-image: url(./imagesLP/sky.jpg);
+    background-size:cover;
+    background-image: center;
+    background-position: relative;
+    overflow-x: hidden;
+
+}
+.city{
+    height:250px;
+    width:200%;
+    background-image:url(./imagesLP/city.png);
+    position:absolute;
+    bottom:200px;
+    left:0;
+    right:0;
+    z-index: index 1;
+    display:block;
+   background-repeat:x;
+    animation :city 15s linear infinite;
+}
+
+@keyframes city{
+   100%{
+       transform:translateX(-1400px);
+   }
+}
+body{
+    overflow-x: hidden;
+}
+.highway{
+    height:200px;
+    width:500%;
+    display:block;
+    background-image: url(./imagesLP/road.jpg);
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:1;
+    background-repeat:x;
+   animation:highway 5s linear infinite;
+}
+@keyframes highway{
+  100%{
+      transform:translateX(-1400px);
+  }
+}
+.car{
+   
+    bottom:100px;
+    position:absolute;
+    z-index:2;
+    width:400px;
+    left:30%;
+}
+
+.car img{
+    width:100%;
+} 
+
+@keyframes car{
+    100%{
+        transform:translateX(-1500px);
+    }
+}
+.wheel{
+    left:30%;
+    bottom:178px;
+    z-index:2;
+    position:absolute;
+}
+.wheel img{
+    height:72px;
+    width:72px;
+    animation: wheel 1s linear infinite;
+
+}
+.back{
+    position:absolute;
+    left:36px;
+  
+    
+}
+.front{
+    position:absolute;
+    left:280px;
+}
+
+@keyframes wheel{
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+body {
+  background: rgba(20, 5, 5, 1);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  perspective: 800px;
+}
+
+div {
+  transform-style: preserve-3d;
+}
+
+
+    </style>
+</head>
+<body>
+       <div class="sky">
+         
+           <h1 id="text">Car Parking Solution</h1>
+           <a class="square" href="#">
+            <div class="burgerwrap">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </a>
+        <a href="/register" class="boton">
+            Click to Register
+        </a>
+           <div class="highway"> </div>
+           <div class="city"> </div>
+           <div class="car">
+               <img src="./imagesLP/car.png" alt="Error">
+           </div>
+           <div class="wheel">
+               <div class="front">
+                   <img src="./imagesLP/wheel.png">
+               </div>
+               <div class="back">
+                <img src="./imagesLP/wheel.png">
+               </div>
+           </div>
+       </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <title>Teams</title>
+</head>
+
+<body>
+  <h1 th:text="${title}"></h1>
+  <p>[[${content}]]</p>
+  <form action="">
+    <input type="text" name="password" id="">
+    <button type="submit">Submit button</button>
+  </form>
+  <div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+      <h1 class="text-2xl font-semibold text-gray-900">Teams</h1>
+    </div>
+    <!-- <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+      <div class="py-4">
+        <ol class="ml-4">
+          <li th:each="team : ${teams}" class="list-disc"> ①
+            <span th:text="${team.name}"></span> ②
+          </li>
+        </ol>
+      </div>
+    </div> -->
+  </div>
+</body>
+
+</html>

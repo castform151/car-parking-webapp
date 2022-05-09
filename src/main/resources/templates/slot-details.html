@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[[${slotModel.getLocation()}]]</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    ul>li {
+      display: inline-block;
+    }
+
+    li span.badge {
+      display: inline-block;
+    }
+
+    .brand-logo {
+      margin-left: 20px;
+    }
+
+    .slots {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+    }
+
+    #Worker {
+      visibility: hidden;
+    }
+
+    #pay {
+      display: none;
+      margin-left: auto;
+      margin-right: auto;
+
+    }
+
+    .row .col.s12 {
+      width: 100%;
+      margin-left: 50px;
+      left: auto;
+      right: auto;
+      z-index: 100;
+    }
+
+    .promo {
+      margin: 10px 5px;
+      background-color: gold;
+      padding: 8px 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper cyan darken-3">
+      <a href="#" class="brand-logo">Car Parking Solutions</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        <li class="active"><a href="/dashboard">Dashboard</a></li>
+        <li><a href="#!" onclick="logout()">Sign Out</a></li>
+      </ul>
+    </div>
+  </nav>
+  <form class="container" method="GET" action="/booking-conformation/">
+    <div th:if="${promoCode != null}" class="row promo" id="promocode">
+      Promo Code! [[${promoCode}]]
+      <button type="button" class="btn blue right" onclick="this.innerHTML='Applied!'">Apply</button>
+    </div>
+    <div class="row">
+      <div class="input-field col m12 s6">
+        <i class="material-icons prefix">place</i>
+        <input id="location" name="location" type="text" value="Karve Nagar,Pune" disabled
+          th:value="${slotModel.getLocation()}">
+        <label for="location">Location</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col m4 s6">
+        <i class="material-icons prefix">event</i>
+        <!-- <input id="date" name="date" type="text" class="validate" autocomplete="off" required> -->
+        <input type="text" name="date" class="datepicker validate" id="date" value="Nov 13, 2021"
+          th1:value="${date.format(date, MMM dd, yyyy)}">
+        <label for="date">Date</label>
+      </div>
+      <div class="input-field col m4 s6">
+        <i class="material-icons prefix">schedule</i>
+        <!-- <input id="startTime" name="startTime" type="text" class="validate" autocomplete="off"> -->
+        <input type="text" name="startTime" class="timepicker validate" id="startTime">
+        <!-- <input id="repeat-time" type="text" class="timepicker validate" pattern="\d{2}:\d{2} [AP]M"> -->
+        <label for="startTime">Check-in time</label>
+      </div>
+      <div class="input-field col m4 s6">
+        <i class="material-icons prefix">update</i>
+        <input id="endTime" name="duration" type="number" min="1" max="4" class="validate" autocomplete="off">
+        <label for="endTime">Duration (hours)</label>
+      </div>
+    </div><br>
+    <section>
+      <h4>Slots</h4>
+      <ul>
+        <li th:each="booking: ${slotModel.getBookings()}">
+          <span class="new badge" data-caption-badge=" ">[[${booking.toHTML()}]]</span>
+        </li>
+      </ul>
+    </section>
+    <div id="addserv" style="border: 2px solid black; padding: 5px; background-color: #dce5fc;">
+      <header style="font-weight: bold; border-bottom: 2px solid black; margin-bottom: 8px;">Choose Worker</header>
+      <div th:each="worker: ${slotModel.getWorkersModelList()}">
+
+        <label style="color: #160447; font-weight: bold; font-size: 15px;">
+          <!-- <input type="checkbox" id="" name="" th /> -->
+          <span th:text="${worker.getName()}">Car Washing</span> for additional cost of Rs.<span
+            th:text="${worker.getCost()}">40</span>
+          <br>
+          <span th:text="${worker.getRating()}">4.6 </span> rating
+          <label th:each="service : ${worker.getServices()}">
+            <div class="row" style="margin-bottom: 0px;">
+              <input type="checkbox" id="" th:name="|${worker.getId()}:${service}|"
+                style="opacity: 1; margin-top: 3px;" />
+              <div style="margin-left: 30px; color:black;">
+                [[${service}]]
+              </div>
+            </div>
+          </label>
+      </div>
+    </div>
+    <button th:href="|/booking/${slotId}/${userId}|" id="book" class="btn waves-effect indigo darken-4
+      " type="button" name="action" style="margin-top: 12px;" onclick="calcost()">BOOK SLOT
+    </button>
+    <div style="border: 2px solid black; margin-top: 15px; padding: 5px">
+      <p style="font-size: 15px; font-weight: bold;">Total Amount to be paid </p>
+      <p id="costingfinal"> </p>
+      <p>Thank You! Visit Again!</p>
+    </div>
+    <button class="btn waves-effect indigo darken-4
+" id="pay" type="submit" name="action">Pay Now</button>
+    </div>
+    <div>
+      <input type="hidden" id="totalcost">
+  </form>
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var userId = /*[[${userId}]]*/ 'default';
+    var slotId = /*[[${slotId}]]*/ 'default';
+    console.log(message);
+
+    /*]]>*/
+  </script>
+  <script>
+    function logout() {
+      document.cookie.split(";").forEach(function (c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+      window.location.href = "/register?logout=1";
+    }
+    // TODO display price on selecting workers
+    // TODO Display slots already booked
+    // TODO display alert if waitinglist will be enrolled into instead
+
+    var paynow = document.getElementById('pay');
+    var bookdiv = document.getElementById('addserv');
+    var bookbtn = document.getElementById('book');
+    bookbtn.addEventListener("click", e => {
+      // TODO Add worker ID's to the url query parameters
+      let href = `/booking/${slotId}/${userId}?date=${document.getElementById("date").value}&location=${document.getElementById("location").value}&startTime=${document.getElementById("startTime").value}&duration=${document.getElementById("endTime").value}`;
+      let workers = "";
+      let w = [...document.getElementById("addserv").querySelectorAll("input:checked")];
+      w.forEach((ele, i) => {
+        if (ele.checked) {
+          workers += ele.getAttribute("name");
+          if (i != w.length - 1) workers += ",";
+        }
+      });
+      href += "&ws=" + workers;
+      window.location.href = href;
+    })
+    function payNow() {
+      bookdiv.style.display = "none";
+      paynow.style.display = "block";
+      bookbtn.style.display = "none";
+      // formdiv.style.visibility = "hidden";
+      // otpdiv.style.visibility = "block";
+      // signup.style.visibility = "block";
+      // otpbtn.style.visibility = "hidden";
+    }
+    // M.AutoInit();
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.timepicker');
+      M.Timepicker.init(elems, {});
+      elems = document.querySelectorAll('.datepicker');
+      M.Datepicker.init(elems, {});
+    });
+    var duration = document.getElementById('endTime').value;
+    var boxes = [...document.getElementById("addserv").querySelectorAll('input[type="checkbox"]')];
+    const price = 40;
+    var totalcost = 100 + 25 * (duration - 1);
+    boxes.forEach(box => {
+      box.addEventListener("change", e => {
+        if (e.target.checked) {
+          totalcost += price
+        } else totalcost -= price
+        document.getElementById('totalcost').value = totalcost
+      })
+    });
+    [...document.getElementsByTagName("input")].forEach(element => {
+      element.addEventListener("change", () => {
+        calcost();
+      })
+      element.addEventListener("input", () => {
+        calcost();
+      })
+    });
+    function calcost() {
+      var duration = document.getElementById('endTime').value;
+      totalcost = 100 + 25 * (duration - 1);
+
+      boxes.forEach(box => {
+        box.addEventListener("input", e => {
+          if (e.target.checked) {
+            totalcost += 40
+          } else totalcost -= 40
+          document.getElementById('totalcost').value = totalcost
+        })
+      });
+      document.getElementById("costingfinal").innerHTML = totalcost;
+
+    }
+  </script>
+</body>
+
+</html>

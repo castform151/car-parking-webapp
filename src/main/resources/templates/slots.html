@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet Scheduler</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="../css/materialize.min.css">
+  <link rel="stylesheet" href="./options.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    header,
+    main,
+    footer {
+      padding-left: 300px;
+    }
+
+    @media only screen and (max-width : 992px) {
+
+      header,
+      main,
+      footer {
+        padding-left: 0;
+      }
+    }
+
+    .flex {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+    }
+
+    .flex .card {
+      margin: 10px 30px !important;
+    }
+  </style>
+</head>
+
+
+
+
+
+<body>
+
+  <ul id="slide-out" class="sidenav sidenav-fixed"
+    style="display: flex; flex-flow: column; transform: translateX(0px);">
+    <li>
+      <div class="user-view">
+        <div class="background">
+
+          <img src="/images/noice.jpg" style="transform: translateY(-10px); width:100%;">
+
+        </div>
+        <a href="#!"><span class="white-text name"></span></a>
+        <a href="#!"><span class="white-text email">
+            <div style="height:120px;"></div>
+
+          </span></a>
+      </div>
+    </li>
+
+    <li class="side_tab tab-active" data-tab="schedule"><a href="/admin" class="waves-effect">
+        <i class="material-icons teal-text">home</i>
+        Home</a></li>
+    <li class="side_tab tab-active active" data-tab="schedule"><a href="/admin/slots" class="waves-effect">
+        <i class="material-icons teal-text">access_time</i>
+        Slots</a></li>
+
+    <li class="side_tab" data-tab="settings"><a href="/admin/workers" class="waves-effect"><i
+          class="material-icons teal-text">people</i>Workers</a></li>
+    <div style="flex-grow: 1; display: flex;flex-direction: column; justify-content: flex-end;">
+    </div>
+
+  </ul>
+  <main>
+
+    <section id="schedule" class="tab-content tab-active">
+      <h2 style="margin-top: 0px; margin-left: 15px;">Welcome, Admin to slots page!</h2>
+      <div class="flex">
+        <div class="card" th:each="slotModel : ${slotModels}">
+          <div>
+            <h5>Location : [[${slotModel.getLocation()}]]</h5>
+            <h5>Start Date : [[${slotModel.sdHTML()}]]</h5>
+            <h5>End Date : [[${slotModel.edHTML()}]]</h5>
+            <h5>Workers :</h5>
+            <ol style="list-style-type: circle;">
+              <li th:each="worker: ${slotModel.getWorkersModelList()}">
+                <h6 style="font-weight: bold;">[[${worker.getName()}]]</h6>
+              </li>
+            </ol>
+            <br><br>
+          </div>
+          <div class="actions">
+            <button class="actions__like" th:data-id="${slotModel.getId().getId()}" onclick="removeS(this);">Remove
+              Slot <i class="fas fa-heart"></i> </button>
+            <button class="actions__trade" th:data-n="${slotModel.getLocation()}" th:data-sd="${slotModel.sdHTML()}"
+              th:data-ed="${slotModel.edHTML()}" th:data-id="${slotModel.getId().getId()}" onclick="openEdit(this)">Edit
+              Details
+              <i class="fas fa-exchange-alt"></i>
+            </button>
+            <!-- <button class="actions__cancel">close &nbsp; <i class="fas fa-times"></i> </button> -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+  </main>
+
+  <!-- FAB -->
+  <div class="fixed-action-btn direction-top active">
+    <a class="btn-floating btn-large modal-trigger" href="#create-subject-modal" id="add-subject-button">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>
+
+
+
+  <!-- New Subject Modal-->
+  <div id="create-subject-modal" class="modal modal-fixed-footer-custom"
+    style="max-width: 600px; max-height: 600px;border: 2px solid black;">
+
+    <div class="modal-content">
+      <h4 style="margin-bottom: 5px; border-bottom: 2px solid black; padding: 5px;">Create a new Slot</h4>
+      <div class="form" style="margin-left: 50px;">
+        <div class="row">
+          <form class="col s12" style="margin-left: -50px; width: 100%;">
+            <div class="row" style="margin-top: 10px;">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">place</i>
+                <input placeholder="Location" id="location" type="text" class="validate">
+                <label for="location">Location</label>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">event</i>
+                <input type="text" name="date" class="datepicker validate" id="startTime" />
+                <label for="startTime">Start Date</label>
+
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">event</i>
+                <input type="text" name="date" class="datepicker validate" id="endTime" />
+                <label for="endTime">End Date</label>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">people</i>
+                <select id="workersS" multiple>
+                  <!-- <option value="" disabled selected>Choose your option</option> -->
+                  <option th:each="worker : ${workers}" th:value="${worker.getId()}">[[${worker.getName()}]]</option>
+
+                </select>
+                <label>Workers</label>
+              </div>
+            </div>
+        </div>
+        <div>
+
+          <button type="button" onclick="createC();" class="waves-effect waves-green btn-flat teal-text">CREATE</button>
+          <a href="#!" class="modal-close waves-effect waves-red red-text btn-flat" id="modal-cancel">Cancel</a>
+        </div>
+
+        <!-- <button id="delete_all" class="btn red white-text waves-effect">Delete all meetings</button> -->
+      </div>
+    </div>
+    </section>
+    </main>
+
+
+    <script>
+
+      function removeS(ele) {
+        const id = ele.getAttribute("data-id");
+        fetch(`/slots/remove/{id}`).then(function (response) {
+        }).then(function (data) {
+          console.log(data);
+          window.location.reload();
+        }).catch(function () {
+          window.location.reload();
+        });
+      }
+      // function editS() {
+      //   const id = ele.getAttribute("data-id");
+      //   fetch(`/slots/edit/{id}`).then(function (response) {
+      //   }).then(function (data) {
+      //     console.log(data);
+      //     window.location.reload();
+      //   }).catch(function () {
+      //     window.location.reload();
+      //   });
+      // }
+      function openEdit(ele) {
+        const id = ele.getAttribute("data-id");
+        document.getElementById("location").value = ele.getAttribute("data-n");
+        document.getElementById("startTime").value = ele.getAttribute("data-sd");
+        document.getElementById("endTime").value = ele.getAttribute("data-ed");
+        var instance = M.Modal.getInstance(document.getElementById("create-subject-modal"));
+        instance.open();
+      }
+      function createC() {
+        // const name = document.getElementById("name").value;
+        const st = document.getElementById("startTime").value;
+        const et = document.getElementById("endTime").value;
+        const location = document.getElementById("location").value;
+        const workers = getWorkers();
+        fetch(`/admin/create?startDate=${st}&endDate=${et}&location=${location}&workers=${workers}`).then(function (response) {
+        }).then(function (data) {
+          console.log(data);
+          window.location.reload();
+        }).catch(function () {
+          window.location.reload();
+          console.log("Booo");
+        });
+      }
+      function getWorkers() {
+        const sel = document.getElementById("workersS");
+        return getSelectValues(sel).join(",");
+      }
+      function getSelectValues(select) {
+        var result = [];
+        var options = select && select.options;
+        var opt;
+
+        for (var i = 0, iLen = options.length; i < iLen; i++) {
+          opt = options[i];
+
+          if (opt.selected) {
+            result.push(opt.value || opt.text);
+          }
+        }
+        return result;
+      }
+    </script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.getElementById('create-subject-modal');
+        var instance = M.Modal.init(elems, {});
+      });
+    </script>
+</body>
+
+</div>
+
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="../materialize.min.js"></script>
+<script src="./worker.js"></script>
+
+<script>
+  var worker = document.getElementById("new-worker");
+  var workerlist = document.getElementById("worker-list");
+  var ctr = 0;
+  // var button = document.getElementById("add-subject-button");
+
+  function func() {
+
+    workerlist.style.display = "none";
+    if (ctr == 0) {
+      worker.style.visibility = "visible";
+      ctr++;
+    }
+    else {
+      worker.style.visibility = "hidden";
+      workerlist.style.display = "block";
+      ctr = 0;
+    }
+  }
+
+  function hide() {
+
+    worker.style.visibility = "hidden";
+
+  }
+
+  var searchbar = document.getElementById("searchbar")
+  var stat_table = document.getElementById("status");
+
+  function tohide() {
+    // table.style.display="inline";
+    stat_table.style.visibility = "visible";
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    var elems = document.querySelectorAll(".timepicker");
+    M.Timepicker.init(elems, {});
+    elems = document.querySelectorAll(".datepicker");
+    M.Datepicker.init(elems, { container: "body" });
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, { container: "body" });
+  });
+</script>
+
+</html>

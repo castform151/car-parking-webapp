@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Car Parking Solutions</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <style>
+    .brand-logo {
+      margin-left: 20px;
+    }
+
+    .slots {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+    }
+
+    .card {
+      max-width: 380px;
+      transition: 0.3s;
+      /* margin: 20px 15px; */
+    }
+
+    .card:hover {
+      cursor: pointer;
+      transform: scale(1.02);
+    }
+
+    .card:hover .card-title {
+      text-decoration: underline;
+    }
+
+    .card div.content {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card .price {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    #wrapper {
+      margin-right: 10%;
+      min-width: 70vw;
+    }
+
+    #sidebar {
+      background-color: #8bbac0;
+      min-width: 19vw;
+      min-height: 100vh;
+      border-left: 2px solid black;
+      padding: 10px 12px;
+    }
+
+    #encloser {
+      display: flex;
+      /* min-width: vw; */
+    }
+
+    #currentbooking {
+      border: 2px solid black;
+      padding: 12px 10px;
+      border-radius: 5px;
+    }
+
+    .sidecard {
+      border: 2px solid black;
+      padding: 12px 10px;
+      border-radius: 5px;
+      box-shadow: 8px 8px 10px 1px rgba(81, 81, 92, 0.5);
+    }
+
+    .sidecard:not(:first-child) {
+      margin-top: 30px;
+    }
+
+    a:link {
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper cyan darken-3">
+      <a href="#" class="brand-logo">Car Parking Solutions</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        <li class="active"><a href="#!">Dashboard</a></li>
+        <li><a href="#!" onclick="logout()">Sign Out</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div id="encloser">
+    <div id="wrapper">
+      <form class="container" method="GET" action="/dashboard/search">
+        <div class="row">
+          <div class="input-field col m3 s6">
+            <i class="material-icons prefix">place</i>
+            <input id="location" name="location" type="text" class="validate" autocomplete="off" required />
+            <label for="location">Location</label>
+          </div>
+          <div class="input-field col m3 s6">
+            <i class="material-icons prefix">event</i>
+            <!-- <input id="date" name="date" type="text" class="validate" autocomplete="off" required> -->
+            <input type="text" name="date" class="datepicker validate" id="date" />
+            <label for="date">Date</label>
+          </div>
+          <div class="input-field col m3 s6">
+            <i class="material-icons prefix">schedule</i>
+            <!-- <input id="startTime" name="startTime" type="text" class="validate" autocomplete="off"> -->
+            <input type="text" name="startTime" class="timepicker validate" id="startTime" />
+            <!-- <input id="repeat-time" type="text" class="timepicker validate" pattern="\d{2}:\d{2} [AP]M"> -->
+            <label for="startTime">Check-in time</label>
+          </div>
+          <div class="input-field col m3 s6">
+            <i class="material-icons prefix">update</i>
+            <input id="endTime" name="duration" type="number" min="1" max="4" class="validate" autocomplete="off" />
+            <label for="endTime">Duration (hours)</label>
+          </div>
+        </div>
+        <div class="row center-align">
+          <button class="btn waves-effect blue darken-4" type="submit" name="action">
+            Search
+            <i class="material-icons right">search</i>
+          </button>
+        </div>
+      </form>
+
+      <div class="container slots">
+        <div class="card indigo darken-4" th:each="slotModel : ${slotModels}">
+          <div class="card-content white-text">
+            <span class="card-title"><a th:href="|booking/${slotModel.getId().getId()}|"><i
+                  class="material-icons">place</i>[[${slotModel.getLocation()}]]</a></span>
+            <div class="content">
+              <div>
+                [[${slotModel.getWorkers().size()}]] services available
+              </div>
+              <div class="price">
+                <i class="material-icons">currency_rupee</i>
+                [[${slotModel.getCostPerHour()}]]
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="sidebar">
+      <div id="currentbooking" class="sidecard">
+        <header>
+          <h6>Current Bookings</h6>
+        </header>
+        <div th:if="${bookings != null && bookings.size() > 0}">
+          <div th:each='cb : ${bookings}'>
+            Pune
+            <div th:text="${cb.getLocation()}">Pune</div>
+            <div th:text="${cb.getStartTime()}">Dec 3 2021 22:02:00</div>
+          </div>
+        </div>
+        <div th:unless="${bookings != null && bookings.size() > 0}">
+          No current bookings yet.
+        </div>
+      </div>
+      <div id="waitinglist" class="sidecard">
+        <header>
+          <h6>Waiting List</h6>
+        </header>
+        <div th:if="${waitingList != null && waitingList.size() > 0}">
+          <div th:each="wl : ${waitingList}">
+            <div th:text="${wl.getLocation()}">Pune</div>
+            <div th:text="${wl.getStartTime()}">Dec 3 2021 22:02:00</div>
+          </div>
+        </div>
+        <div th:unless="${waitingList != null && waitingList.size() > 0}">
+          You are in no waiting lists.
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function logout() {
+      document.cookie.split(";").forEach(function (c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+      window.location.href="/register?logout=1";
+    }
+    // M.AutoInit();
+    document.addEventListener("DOMContentLoaded", function () {
+      var elems = document.querySelectorAll(".timepicker");
+      M.Timepicker.init(elems, {});
+      elems = document.querySelectorAll(".datepicker");
+      M.Datepicker.init(elems, {});
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      var elems = document.querySelectorAll("#location");
+      var instances = M.Autocomplete.init(elems, {
+        data: {
+          Apple: null,
+          Microsoft: null,
+          Google: null,
+        },
+      });
+    });
+  </script>
+</body>
+
+</html>
